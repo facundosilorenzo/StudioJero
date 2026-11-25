@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#E8ECE5" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0D1311" media="(prefers-color-scheme: dark)">
-<title>Cleared · Fundamentos de Informática</title>
+<title>JeroStudio · Fundamentos de Informática</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -720,7 +720,7 @@ function setAcc(sid){ app.className = 'wrap' + (sid? ' s-'+sid : ' s-'+(proximo(
 function proximo(){ return ASIGNATURAS.filter(a=>a.examen && diasHasta(a.examen)>=0).sort((x,y)=>fecha(x.examen)-fecha(y.examen))[0]; }
 
 function topbar(extra=''){
-  return `<div class="top"><button class="brand" onclick="ir('')">${LOGO}<b>Cleared</b><span>Fundamentos de Informática · exam ready</span></button><nav class="crumbs">${extra}</nav></div>`;
+  return `<div class="top"><button class="brand" onclick="ir('')">${LOGO}<b>JeroStudio</b><span>Fundamentos de Informática · exam ready</span></button><nav class="crumbs">${extra}</nav></div>`;
 }
 
 function render(){
@@ -1041,7 +1041,7 @@ function pintarChat(){
   if(!iaOK()){ p.querySelector('form').hidden=true; box.innerHTML=`<div class="nope"><b>Para usar el chat en esta web, conecta una IA gratis (Gemini de Google):</b>
       <ol style="margin:8px 0 10px 18px;padding:0"><li>Entra en <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">aistudio.google.com/apikey</a> con tu cuenta de Google.</li><li>Pulsa <b>Create API key</b> y copia la clave.</li><li>Pégala aquí y pulsa Guardar.</li></ol>
       <div class="row" style="gap:6px"><input type="password" id="gkIn" placeholder="Pega tu clave (AIza…)" autocomplete="off" style="flex:1;min-width:0;font:inherit;border:1px solid var(--line);border-radius:10px;padding:8px 10px;background:var(--bg);color:var(--ink)"><button class="btn primary" type="button" id="gkOk" style="padding:8px 14px">Guardar</button></div>
-      <p class="muted" style="font-size:.8rem;margin-top:8px">La clave se guarda solo en este navegador; no se sube a ningún sitio salvo a Google al preguntar. Si abres Cleared desde Claude no hace falta: allí responde Claude.</p></div>`;
+      <p class="muted" style="font-size:.8rem;margin-top:8px">La clave se guarda solo en este navegador; no se sube a ningún sitio salvo a Google al preguntar. Si abres JeroStudio desde Claude no hace falta: allí responde Claude.</p></div>`;
     const gin=box.querySelector('#gkIn'); box.querySelector('#gkOk').onclick=()=>{ const v=gin.value.trim(); if(!v) return; try{ localStorage.setItem(GKEY,v); }catch(e){} pintarChat(); p.querySelector('textarea').focus(); };
     gin.onkeydown=e=>{ if(e.key==='Enter') box.querySelector('#gkOk').click(); };
     return; }
@@ -1063,7 +1063,7 @@ async function preguntarDuda(texto){
   const ctx=dudaCtxTexto();
   CHAT.push({role:'user', ver:texto, content: ctx? `[Contexto: ${ctx}]\n\nDuda del alumno: ${texto}` : texto});
   const resp={role:'assistant', ver:'Pensando…', wait:true}; CHAT.push(resp); pintarChat();
-  const inst=`Eres un profesor de Fundamentos de Informática (1.º de ingeniería en la ETSI Industrial de la Universidad de Málaga; temario: codificación y sistemas de numeración, arquitectura del ordenador, algoritmos y programación en C/C++) que resuelve dudas de un alumno mientras hace un test de repaso en la app Cleared. Si hace falta código, usa C++ sencillo como en los apuntes (iostream, cin/cout, array, string, sin break ni continue en bucles). Responde en español, claro y breve (normalmente 2-6 frases, como mucho una lista corta), con un ejemplo cuando ayude. Usa **negritas** solo para términos clave. Sin títulos ni tablas. Si te pasa el contexto de una pregunta, cíñete a ella y respeta lo que diga sobre no revelar la respuesta.\n\n`;
+  const inst=`Eres un profesor de Fundamentos de Informática (1.º de ingeniería en la ETSI Industrial de la Universidad de Málaga; temario: codificación y sistemas de numeración, arquitectura del ordenador, algoritmos y programación en C/C++) que resuelve dudas de un alumno mientras hace un test de repaso en la app JeroStudio. Si hace falta código, usa C++ sencillo como en los apuntes (iostream, cin/cout, array, string, sin break ni continue en bucles). Responde en español, claro y breve (normalmente 2-6 frases, como mucho una lista corta), con un ejemplo cuando ayude. Usa **negritas** solo para términos clave. Sin títulos ni tablas. Si te pasa el contexto de una pregunta, cíñete a ella y respeta lo que diga sobre no revelar la respuesta.\n\n`;
   const hist=CHAT.filter(m=>m!==resp && !m.err).slice(-12).map(m=>({role:m.role, content:m.content||m.ver}));
   while(hist.length && hist[0].role!=='user') hist.shift();
   chatCtl=new AbortController();

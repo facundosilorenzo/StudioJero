@@ -1,4 +1,4 @@
-# StudioJero · Cleared
+# JeroStudio
 
 Repaso de **Fundamentos de Informática** (ETSI Industrial, Universidad de Málaga), temas 1 a 6: esquemas por tema, flashcards, tests con corrección automática, preguntas cortas, ejercicios (cambios de base, trazas de código y programas en C++) y simulacros de examen.
 
